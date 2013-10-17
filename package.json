@@ -1,6 +1,6 @@
 {
-  "name": "connect-livereload",
-  "description": "connect middleware for adding the livereload script to the response",
+  "name": "connect-inject",
+  "description": "connect middleware for adding any script to the response",
   "version": "0.3.0",
   "author": "Andi Neck <andi.neck@intesso.com>",
   "contributors": [

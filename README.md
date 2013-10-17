@@ -1,15 +1,14 @@
-connect-livereload
+connect-inject
 ==================
-connect middleware for adding the livereload script to the response.
-no browser plugin is needed.
-if you are happy with a browser plugin, then you don't need this middleware.
+connect middleware for adding any script to the response, this is a forked version of connect-livereload.
+
 
 [![Build Status](https://travis-ci.org/intesso/connect-livereload.png)](https://travis-ci.org/intesso/connect-livereload)
 [![NPM version](https://badge.fury.io/js/connect-livereload.png)](http://badge.fury.io/js/connect-livereload)
 install
 =======
 ```bash
-npm install connect-livereload --save-dev
+npm install connect-inject --save-dev
 ```
 
 use
@@ -51,12 +50,12 @@ These are the available options with the following defaults:
 ```javascript
   // these files will be ignored
   ignore: ['.js', '.css', '.svg', '.ico', '.woff', '.png', '.jpg', '.jpeg'],
-  
+
   // this function is used to determine if the content of `res.write` or `res.end` is html.
   html: function (str) {
     return /<[:_-\w\s\!\/\=\"\']+>/i.test(str);
   },
-  
+
   // rules are provided to find the place where the snippet should be inserted.
   // the main problem is that on the server side it can be tricky to determine if a string will be valid html on the client.
   // the function `fn` of the first `match` is executed like this `body.replace(rule.match, rule.fn);`
@@ -76,7 +75,7 @@ These are the available options with the following defaults:
   port: 35729,
 
   // location where the script is provided (not by connect-livereload). Change this e.g. when serving livereload with a proxy.
-  src: "http://localhost:35729/livereload.js?snipver=1", 
+  src: "http://localhost:35729/livereload.js?snipver=1",
 ```
 
 please see the [examples](https://github.com/intesso/connect-livereload/tree/master/examples) for the app and Grunt configuration.
