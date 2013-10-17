@@ -4,6 +4,8 @@ connect middleware for adding any script to the response, this is a forked versi
 
 This is a slightly modified version of (connect-livereload)[https://github.com/intesso/connect-livereload] all the credits go to  the author.
 
+For further documentation refer to the author's repo (connect-livereload)[https://github.com/intesso/connect-livereload].
+
 install
 =======
 ```bash
@@ -14,15 +16,8 @@ git clone https://github.com/danielhq/connect-inject.git
 ```
 use
 ===
-note: if you use this middleware, you should make sure to switch off the Browser LiveReload Extension if you have it installed.
 
-this middleware can be used with a LiveReload server e.g. [grunt-reload](https://github.com/webxl/grunt-reload) or [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch).
-
-`connect-livereload` itself does not serve the `livereload.js` script.
-
-In your connect or express application add this after the static and before the dynamic routes.
-If you need liveReload on static html files, then place it before the static routes.
-`ignore` gives you the possibility to ignore certain files or url's from being handled by `connect-livereload`.
+this middleware can be used to inject any sort of content into the webpage e.g. [Livereload, Weinre etc]
 
 ## connect/express example
 ```javascript
@@ -31,15 +26,14 @@ If you need liveReload on static html files, then place it before the static rou
   }));
 ```
 
-please see the [examples](https://github.com/intesso/connect-livereload/tree/master/examples) for the app and Grunt configuration.
 
 ## options
-Options are not mandatory: `app.use(require('connect-livereload')());`
+Options are not mandatory: `app.use(require('connect-inject')());`
 The Options have to be provided when the middleware is loaded:
 
 e.g.:
 ```
-  app.use(require('connect-livereload')({
+  app.use(require('connect-inject')({
     snippet: "<script>alert('hello world');</script>",
     ignore: ['.js', '.svg']
   }));
