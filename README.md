@@ -2,15 +2,16 @@ connect-inject
 ==================
 connect middleware for adding any script to the response, this is a forked version of connect-livereload.
 
+This is a slightly modified version of (connect-livereload)[https://github.com/intesso/connect-livereload] all the credits go to  the author.
 
-[![Build Status](https://travis-ci.org/intesso/connect-livereload.png)](https://travis-ci.org/intesso/connect-livereload)
-[![NPM version](https://badge.fury.io/js/connect-livereload.png)](http://badge.fury.io/js/connect-livereload)
 install
 =======
 ```bash
 npm install connect-inject --save-dev
 ```
-
+```git
+git clone https://github.com/danielhq/connect-inject.git
+```
 use
 ===
 note: if you use this middleware, you should make sure to switch off the Browser LiveReload Extension if you have it installed.
@@ -25,8 +26,8 @@ If you need liveReload on static html files, then place it before the static rou
 
 ## connect/express example
 ```javascript
-  app.use(require('connect-livereload')({
-    port: 35729
+  app.use(require('connect-inject')({
+    snippet: "<script>alert('hello world');</script>"
   }));
 ```
 
@@ -39,7 +40,7 @@ The Options have to be provided when the middleware is loaded:
 e.g.:
 ```
   app.use(require('connect-livereload')({
-    port: 35729,
+    snippet: "<script>alert('hello world');</script>",
     ignore: ['.js', '.svg']
   }));
 
@@ -71,14 +72,10 @@ These are the available options with the following defaults:
     fn: append
   }],
 
-  // port where the script is loaded
-  port: 35729,
 
-  // location where the script is provided (not by connect-livereload). Change this e.g. when serving livereload with a proxy.
-  src: "http://localhost:35729/livereload.js?snipver=1",
+  // snippet taks a string argument which can be anything you want, and will be appended (by default) before </body> tag
+  snippet: "<script>alert('hello world');</script>"
 ```
-
-please see the [examples](https://github.com/intesso/connect-livereload/tree/master/examples) for the app and Grunt configuration.
 
 
 ## grunt example
@@ -95,8 +92,7 @@ connect: {
     options: {
       middleware: function (connect) {
         return [
-          require('connect-livereload')(), // <--- here
-          checkForDownload,
+          require('connect-inject')({ snippet: "<script>alert('hello world');</script>"}),
           mountFolder(connect, '.tmp'),
           mountFolder(connect, 'app')
         ];
@@ -108,28 +104,17 @@ connect: {
 For use as middleware in grunt simply add the following to the **top** of your array of middleware.
 
 ```javascript
-  require('connect-livereload')(),
+  require('connect-inject')(),
 ```
 You can pass in options to this call if you do not want the defaults.
 
 `dev` is simply the name of the server being used with the task `grunt connect:dev`. The other items in the `middleware` array are all functions that either are of the form `function (req, res, next)` like `checkForDownload` or return that like `mountFolder(connect, 'something')`.
 
-alternative
-===========
-An alternative would be to install the [LiveReload browser plugin](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei).
-
 
 credits
 =======
-* The middleware code is mainly extracted from: [grunt-contrib-livereload/util.js](https://github.com/gruntjs/grunt-contrib-livereload/blob/master/lib/utils.js)
-* [LiveReload Creator](http://livereload.com/)
+This is a slightly modified version of (connect-livereload)[https://github.com/intesso/connect-livereload] all the credits go to the author.
 
-tests
-=====
-run the tests with
-```
-mocha
-```
 
 license
 =======

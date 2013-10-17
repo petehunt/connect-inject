@@ -2,7 +2,7 @@
   "name": "connect-inject",
   "description": "connect middleware for adding any script to the response",
   "version": "0.3.0",
-  "author": "Andi Neck <andi.neck@intesso.com>",
+  "author": "Daniel Duches <iridiumweb@gmail.com>",
   "contributors": [
     {
       "name": "Andi Neck",
@@ -11,16 +11,13 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "express": "~3.2.2",
-    "supertest": "~0.6.0",
-    "mocha": "~1.9.0"
+    "express": "~3.2.2"
   },
   "keywords": [
     "connect",
-    "livereload",
-    "live-reload"
+    "inject"
   ],
-  "repository": "git://github.com/intesso/connect-livereload",
+  "repository": "git://github.com/danielhq/connect-inject.git",
   "main": "index",
   "engines": {
     "node": "*"
