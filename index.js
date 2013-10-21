@@ -14,7 +14,7 @@ module.exports = function livereload(opt) {
     fn: append
   }];
 
-  var snippet = opt.snippet || "";
+  var inject = opt.inject || "";
 
   // helper functions
   var regex = (function() {
@@ -53,7 +53,7 @@ module.exports = function livereload(opt) {
     rules.some(function(rule) {
       if (rule.match.test(body)) {
         _body = body.replace(rule.match, function(w) {
-          return rule.fn(w, snippet);
+          return rule.fn(w, inject);
         });
         return true;
       }
@@ -81,9 +81,9 @@ module.exports = function livereload(opt) {
   }
 
   // middleware
-  return function livereload(req, res, next) {
-    if (res._livereload) return next();
-    res._livereload = true;
+  return function inject(req, res, next) {
+    if (res._inject) return next();
+    res._inject = true;
 
     var writeHead = res.writeHead;
     var write = res.write;

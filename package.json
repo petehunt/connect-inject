@@ -3,13 +3,8 @@
   "description": "connect middleware for adding any script to the response",
   "version": "0.3.0",
   "author": "Daniel Duches <iridiumweb@gmail.com>",
-  "contributors": [
-    {
-      "name": "Andi Neck",
-      "email": "andi.neck@intesso.com"
-    }
-  ],
-  "dependencies": {},
+  "email":"iridiumweb@gmail.com",
+  "dependencies" : {},
   "devDependencies": {
     "express": "~3.2.2"
   },
