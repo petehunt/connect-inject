@@ -18,7 +18,10 @@ use
 ===
 
 this middleware can be used to inject any sort of content into the webpage e.g. [Livereload, Weinre etc]
-
+```
+  snippet: string | Array
+```
+snippet now accepts either string or an array.
 ## connect/express example
 ```javascript
   app.use(require('connect-inject')({

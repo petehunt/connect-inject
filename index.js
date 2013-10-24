@@ -1,4 +1,4 @@
-module.exports = function livereload(opt) {
+module.exports = function inject(opt) {
   // options
   var opt = opt || {};
   var ignore = opt.ignore || opt.excludeList || ['.js', '.css', '.svg', '.ico', '.woff', '.png', '.jpg', '.jpeg'];
@@ -13,8 +13,21 @@ module.exports = function livereload(opt) {
     match: /<\!DOCTYPE.+>/,
     fn: append
   }];
+  var snippetBuilder = function(snippet) {
+    if (snippet) {
+      if (snippet instanceof Array) {
+        return snippet.join("");
+      } else {
+        return snippet;
+      }
+    } else {
+      return "";
+    }
+  };
 
-  var inject = opt.inject || "";
+  var snippet = snippetBuilder(opt.snippet);
+
+
 
   // helper functions
   var regex = (function() {
@@ -53,7 +66,7 @@ module.exports = function livereload(opt) {
     rules.some(function(rule) {
       if (rule.match.test(body)) {
         _body = body.replace(rule.match, function(w) {
-          return rule.fn(w, inject);
+          return rule.fn(w, snippet);
         });
         return true;
       }
@@ -82,8 +95,8 @@ module.exports = function livereload(opt) {
 
   // middleware
   return function inject(req, res, next) {
-    if (res._inject) return next();
-    res._inject = true;
+    if (res.inject) return next();
+    res.inject = true;
 
     var writeHead = res.writeHead;
     var write = res.write;
