@@ -116,3 +116,7 @@ This is a slightly modified version of [connect-livereload](https://github.com/i
 license
 =======
 [MIT License](https://github.com/intesso/connect-livereload/blob/master/LICENSE)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/danielhq/connect-inject/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
