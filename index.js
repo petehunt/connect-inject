@@ -61,13 +61,16 @@ module.exports = function inject(opt) {
     return (~body.lastIndexOf("/livereload.js"));
   }
 
-  function snap(body) {
+  function snap(body, didInsert) {
     var _body = body;
     rules.some(function(rule) {
       if (rule.match.test(body)) {
         _body = body.replace(rule.match, function(w) {
           return rule.fn(w, snippet);
         });
+        if (didInsert) {
+          didInsert();
+        }
         return true;
       }
       return false;
@@ -120,7 +123,7 @@ module.exports = function inject(opt) {
       if (string !== undefined) {
         var body = string instanceof Buffer ? string.toString(encoding) : string;
         if (exists(body) && !snip(res.data)) {
-          res.push(snap(body));
+          res.push(snap(body, opt.didInsert));
           return true;
         } else if (html(body) || html(res.data)) {
           res.push(body);
